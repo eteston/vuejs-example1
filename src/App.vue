@@ -16,8 +16,16 @@
     import Footer from './components/Shared/Footer.vue';
     import Servers from './components/Server/Servers.vue';
     import ServerDetails from './components/Server/ServerDetails.vue';
+    
+    import { eventBus } from './main.js';
 
     export default {
+        data () {
+            return {
+                item: {
+                }
+            }
+        },
         components: {
             appHeader: Header,
             Servers,

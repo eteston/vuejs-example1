@@ -1,25 +1,23 @@
 <template>
-    <li>
-        Server #{{ server.id }} - Status: {{ status }}
+    <li 
+        class="list-group-item" 
+        @click="selectedItem"
+        >
+        Server #{{ server.id }} - Status: {{ server.status }}
     </li>
 </template>
 
 <script>
+    import { eventBus } from './../../main';
+
     export default {
-        props: [
-           { 
-               id: {
-                    type: Number,
-                    required: true
-                }
-           }, {
-                status: {
-                    type: String,
-                    requiere: true
-                }
-           }
-        ]
-    };
+        props: ['server'],
+        methods: {
+            selectedItem () {
+                eventBus.selectedItem(this.server);
+            }
+        }
+    }
 </script>
 <style>
 
