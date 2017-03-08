@@ -8,7 +8,7 @@
                 <p>{{ testClick }} </p>
 
                 <button class="btn btn-primary"
-                    v-myon:click="eventClick('test')" 
+                    v-myon:click="eventClick" 
                     >Owner click</button>
                 <button class="btn btn-info"
                     @click="testClick += ' >>OFFICIAL<< '" 
@@ -26,8 +26,11 @@
             }
         },
         methods: {
-            eventClick: function(expression) {
+            eventClickERROR: function(expression) {
                 this.testClick += ' ' + expression
+            },
+            eventClick: function() {
+                this.testClick += ' ' + 'test'
             }
         },
         directives: {
@@ -38,15 +41,8 @@
                     //     console.info('[BIND]Attach click ' + JSON.stringify(el));
                     //     console.info('[BIND]Expression: ' + binding.expression);
                     // }
-                },
-                inserted(el, binding, vnode) {
 
-                    if (binding.arg == 'click') {
-                        //el.click(binding.expression);
-                        //console.info('[INSERTED] Attach click ' + JSON.stringify(el));
-                        console.info('[INSERTED] Expression: ' + binding.expression);
-                    }
-
+                    el.addEventListener(binding.arg, binding.value);
                 }
             }
         }
